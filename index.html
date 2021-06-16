@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="./jquery-3.4.1.min.js"></script>
+  <script src="./popper.min.js"></script>
+  <script src="./bootstrap.min.js"></script>
+  <script src="./jqcrud.js"></script>
+  <link rel="stylesheet" href="./bootstrap.min.css" />
+  <link rel="stylesheet" href="./jqstyles.css" />
+</head>
+
+<body class="container">
+  <h1>Faculty API Client</h1>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+    Add New Record
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Faculty Member</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="titleHelp"
+              placeholder="Name of the member" />
+            <small id="titleHelp" class="form-text text-muted">Enter Name</small>
+          </div>
+
+          <div class="form-group">
+            <label for="body">E-Mail</label>
+            <input type="text" class="form-control" name="email" id="email" aria-describedby="bodyHelp"
+              placeholder="E-Mail address of member" />
+            <small id="bodyHelp" class="form-text text-muted">Enter E-mail Address</small>
+          </div>
+
+          <div class="form-group">
+            <label for="title">ID</label>
+            <input type="text" class="form-control" name="fid" id="fid" aria-describedby="titleHelp"
+              placeholder="Member's ID" />
+            <small id="titleHelp" class="form-text text-muted">Enter ID</small>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Gender</label>
+            <input type="text" class="form-control" name="gender" id="gender" aria-describedby="titleHelp"
+              placeholder="Gender of the member" />
+            <small id="titleHelp" class="form-text text-muted">Enter Gender</small>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Course Code</label>
+            <input type="text" class="form-control" name="coursecode" id="coursecode" aria-describedby="titleHelp"
+              placeholder="Assigned Course Code" />
+            <small id="titleHelp" class="form-text text-muted">Enter Course Code</small>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Phone#</label>
+            <input type="text" class="form-control" name="phone" id="phone" aria-describedby="titleHelp"
+              placeholder="Phone Number of member" />
+            <small id="titleHelp" class="form-text text-muted">Enter Phone #</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="addBtn" class="btn btn-info">Insert Record</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="recipes">
+    Loading ...
+  </div>
+
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Record</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="updateId" /> <br />
+          <div class="form-group">
+
+            <label for="updateName">Name</label>
+            <input type="text" class="form-control" name="updateName" id="updateName" aria-describedby="updateHelpId"
+              placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter Name to Update</small>
+          </div>
+
+          <div class="form-group">
+            <label for="updateEmail">E-Mail</label>
+            <input type="text" class="form-control" name="updateEmail" id="updateEmail" aria-describedby="updateHelpId"
+              placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter E-Mail to Update</small>
+          </div>
+
+          <div class="form-group">
+            <label for="updateFID">ID</label>
+            <input type="text" class="form-control" name="updateFID" id="updateFID" aria-describedby="updateHelpId"
+              placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter ID to Update</small>
+          </div>
+
+          <div class="form-group">
+            <label for="updateGender">Gender</label>
+            <input type="text" class="form-control" name="updateGender" id="updateGender"
+              aria-describedby="updateHelpId" placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter Gender to Update</small>
+          </div>
+
+          <div class="form-group">
+            <label for="updateCourseC">Course Code</label>
+            <input type="text" class="form-control" name="updateCourseC" id="updateCourseC"
+              aria-describedby="updateHelpId" placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter Course Code to Update</small>
+          </div>
+
+          <div class="form-group">
+            <label for="updatePhone">Phone#</label>
+            <input type="text" class="form-control" name="updatePhone" id="updatePhone" aria-describedby="updateHelpId"
+              placeholder="" />
+            <small id="updateHelpId" class="form-text text-muted">Enter Phone# to Update</small>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button id="updateSave" class="btn btn-primary">Update</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
